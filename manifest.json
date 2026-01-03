@@ -1,6 +1,6 @@
 {
     "name": "Okiyome Timer",
-    "short_name": "Okiyome",
+    "short_name": "Okiyome Timer",
     "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#1a1a2e",
@@ -19,3 +19,4 @@
     ]
 
 }
+
