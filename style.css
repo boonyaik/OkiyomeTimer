@@ -26,7 +26,11 @@ body {
     font-family: var(--font-main);
     overflow: hidden;
     height: 100vh;
+    /* Fallback */
+    height: 100dvh;
+    /* Dynamic Height */
     width: 100vw;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .app-container {
