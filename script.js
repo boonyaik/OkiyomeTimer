@@ -75,6 +75,9 @@ function init() {
     el.ring.style.strokeDasharray = `${c} ${c}`;
     el.ring.style.strokeDashoffset = c; // Empty
 
+    // Create Audio context for iOS if needed or just load
+    bell.load();
+
     // 2. Data Init
     // Sync switch with default state
     if (el.switchNew) el.switchNew.checked = state.showNew;
