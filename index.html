@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Okiyome Timer</title>
+    <meta name="description" content="A premium progressive timer for purification sessions.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a1a2e">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Portrait View (Standard UI) -->
+        <main class="portrait-view">
+            <header>
+                <h1>Okiyome Timer</h1>
+                <div class="header-controls">
+                    <button id="fullscreen-btn" class="icon-btn" aria-label="Toggle Fullscreen">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
+                            </path>
+                        </svg>
+                    </button>
+                    <button id="mute-btn" class="icon-btn" aria-label="Toggle Mute">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round" id="mute-icon">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <line x1="23" y1="9" x2="17" y2="15"></line>
+                            <line x1="17" y1="9" x2="23" y2="15"></line>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="timer-display-container">
+                <div class="timer-circle">
+                    <svg class="progress-ring" width="280" height="280">
+                        <circle class="progress-ring__circle-bg" stroke="#333" stroke-width="8" fill="transparent"
+                            r="130" cx="140" cy="140" />
+                        <circle class="progress-ring__circle" stroke="#D4AF37" stroke-width="8" fill="transparent"
+                            r="130" cx="140" cy="140" />
+                    </svg>
+                    <div class="time-text">
+                        <span id="current-stage-name">Ready</span>
+                        <div id="main-timer" class="large-time">00:00</div>
+                        <span id="next-stage-name">Next: Point 8</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <div class="info-item">
+                    <span class="label">Total Time Lapse</span>
+                    <span id="total-timer" class="value">00:00</span>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-points-switch">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label">+7 Points</span>
+                </div>
+                <button id="reset-btn" class="btn secondary">Reset</button>
+                <button id="start-pause-btn" class="btn primary">Start</button>
+            </div>
+
+            <div class="stage-picker-container">
+                <div class="picker-label">Select Starting Point</div>
+                <div id="stage-picker" class="stage-picker">
+                    <!-- JS Populated -->
+                </div>
+                <div class="picker-fade-top"></div>
+                <div class="picker-fade-bottom"></div>
+            </div>
+        </main>
+
+        <!-- Landscape View (Large Timer) -->
+        <div class="landscape-view">
+            <div class="landscape-content">
+                <button id="restore-btn" class="icon-btn restore-btn" aria-label="Restore View">
+                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3">
+                        </path>
+                    </svg>
+                </button>
+
+                <h2 class="landscape-header">
+                    <span id="landscape-stage-name">Point 8</span>
+                    <span id="landscape-total-time" class="landscape-total">Total: 00:00</span>
+                </h2>
+
+                <div id="landscape-timer" class="massive-time">10:00</div>
+
+                <div class="landscape-progress-bar">
+                    <div id="landscape-progress-fill" class="fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').catch(err => console.log(err));
+        }
+    </script>
+</body>
+
+</html>
