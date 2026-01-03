@@ -306,7 +306,7 @@ function updateUI() {
     const sel = getPickerSelection();
     if (sel !== state.idx) {
         if (activeStages[sel]) { // Check existence
-            el.btnStart.textContent = `Jump to ${activeStages[sel].name}`;
+            el.btnStart.textContent = `Go to ${activeStages[sel].name}`;
         }
         el.btnStart.className = "btn primary";
     } else {
@@ -407,3 +407,4 @@ function reLock() {
 
 // Start
 init();
+
