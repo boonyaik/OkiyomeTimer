@@ -29,6 +29,7 @@ let state = {
     muted: false,
     pid: null,        // Interval ID
     last: 0,          // Last tick timestamp
+    residual: 0,      // Fractional accumulator
     showNew: false    // New points enabled? (DEFAULT: FALSE)
 };
 
@@ -148,7 +149,7 @@ function start() {
     updateUI();
 
     // Background Loop
-    state.pid = setInterval(tick, 1000);
+    state.pid = setInterval(tick, 100);
     tick(); // Immediate
 }
 
@@ -166,6 +167,7 @@ function reset() {
     state.time = 0;
     state.lapse = 0;
     state.break = false;
+    state.residual = 0;
 
     scrollToPicker(0);
 
@@ -178,6 +180,7 @@ function jump(i) {
     state.idx = i;
     state.time = 0;
     state.break = false;
+    state.residual = 0;
     // Keep lapse
     render();
     updateUI();
@@ -223,6 +226,7 @@ function nextPhase() {
     if (!state.muted) {
         bell.currentTime = 0;
         bell.play().catch(e => console.log(e));
+        setTimeout(() => { bell.pause(); bell.currentTime = 0; }, 2000);
     }
 
     // Stage End -> Next Stage (No Break)
