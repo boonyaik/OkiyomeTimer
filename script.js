@@ -146,11 +146,22 @@ function start() {
     state.last = performance.now();
 
     lockScreen();
+    unlockAudio(); // iOS requirement
     updateUI();
 
     // Background Loop
     state.pid = setInterval(tick, 100);
     tick(); // Immediate
+}
+
+// iOS Audio Unlock: Play briefly on first user interaction
+function unlockAudio() {
+    if (window._audioUnlocked) return;
+    bell.play().then(() => {
+        bell.pause();
+        bell.currentTime = 0;
+        window._audioUnlocked = true;
+    }).catch(e => console.log("Audio unlock failed", e));
 }
 
 function pause() {
