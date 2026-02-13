@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube + Google Analytics</title>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CWBDEZY33W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CWBDEZY33W');
+  </script>
+</head>
+
+<body>
+  <h3>YouTube Video (Autoplay)</h3>
+
+  <!-- YouTube Embed with Autoplay -->
+  <iframe
+    width="360"
+    height="640"
+    src="https://www.youtube.com/embed/NZfN4uZ0YkM?autoplay=1&mute=1&playsinline=1"
+    title="YouTube video player"
+    frameborder="0"
+    allow="autoplay; encrypted-media; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+</body>
+</html>
